@@ -78,7 +78,9 @@
     props: {
       options: {
         type: Object,
-        default: () => ({})
+        default: () => ({
+          isUpdate: false,
+        })
       },
       globalOptions: {
         type: Object,
@@ -117,7 +119,9 @@
       this.update()
     },
     updated() {
-      this.update()
+      if (this.$parent.options && this.$parent.options.isUpdate) {
+        this.update()
+      }
     },
     beforeDestroy() {
       this.$nextTick(function() {
